@@ -8,6 +8,7 @@ Kept in its own module (rather than inline in views.py) so it's easy to:
 import json
 import os
 from groq import Groq
+from django.conf import settings
 
 _client = None
 
@@ -15,7 +16,7 @@ _client = None
 def get_client():
     global _client
     if _client is None:
-        _client = Groq(api_key=os.environ.get("GROQ_API_KEY", ""))
+        _client = Groq(api_key=settings.GROQ_API_KEY)
     return _client
 
 
